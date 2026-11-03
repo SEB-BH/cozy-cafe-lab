@@ -106,7 +106,7 @@ Choose a colour such as `bisque`, `lightsteelblue`, or `lavender`.
 **Check your work:** The original background should appear when the page loads. Clicking the button should change it.
 
 
-## Part 4b: Highlight the cafe photos
+## Part 5: Highlight the cafe photos
 
 Help visitors see which photo they are pointing at.
 
@@ -125,7 +125,7 @@ photoElement.style.borderColor = '#76523c';
 
 **Check your work:** Move your pointer over each photo, then away. Only the photo you are hovering over should have a dark border.
 
-## Part 5: Display whether the cafe is open
+## Part 6: Display whether the cafe is open
 
 So far, you have changed elements directly. Next, you will store information in a variable and use a function to display it.
 
@@ -193,7 +193,7 @@ Use the existing `isCafeOpen` variable and `renderCafe()` function.
 
 **Check your work:** Close the cafe, reopen it, and repeat. The message should match the most recent button click.
 
-## Part 6: Display specialty availability
+## Part 7: Display specialty availability
 
 The cafe also needs to show which specialties are available.
 
@@ -306,7 +306,7 @@ The page should now display the updated status.
 
 Refreshing the page runs the starting code again, so the croissant will return to **Sold out**.
 
-## Part 7: Add a past menu item
+## Part 8: Add a past menu item
 
 The cafe previously served Rose Cake. Add it to the **Past Menu Items** list using JavaScript.
 
@@ -319,7 +319,7 @@ The cafe previously served Rose Cake. Add it to the **Past Menu Items** list usi
 
 > 🧠 Keep this element-creation code outside `renderCafe()`. It should run once when the page loads. Putting it inside the function would create another item whenever the function runs.
 
-## Part 8: Publish a cafe update
+## Part 9: Publish a cafe update
 
 Create a third blog post using JavaScript.
 
