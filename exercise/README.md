@@ -202,12 +202,12 @@ Now bring the two pieces together.
 
 Each button needs to:
 
-1. Change the cafe’s data.
-2. Call the function that displays that data.
+1. Change the cafe’s data (state).
+2. Call the function that displays that data (state).
 
 #### Make Close Cafe update the page
 
-Find the Close Cafe listener you wrote in Part 5a.
+Find the Close Cafe listener you wrote in Part 6a.
 
 Replace its `console.log()` line with:
 
@@ -222,14 +222,7 @@ The first line records that the cafe is closed. The second line updates the mess
 
 #### Make Open Cafe update the page
 
-Find the Open Cafe listener.
-
-Replace its `console.log()` line with:
-
-```js
-isCafeOpen = true;
-renderCafe();
-```
+Do the same to the Open Cafe listener, except `isCafeOpen` should be set to `true` when we click the Open Cafe button.
 
 **Checkpoint:** Close the cafe, then reopen it. Repeat a few times.
 
