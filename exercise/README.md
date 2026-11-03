@@ -127,28 +127,15 @@ photoElement.style.borderColor = '#76523c';
 
 ## Part 6: Display whether the cafe is open
 
-
-### Part 6a: Make the opening buttons respond
+### 6a: Make the opening buttons respond
 
 Cafe staff need to open and close the cafe’s website status. Start by checking that both buttons can respond to clicks.
 
-#### Connect the Close Cafe button
+#### Connect the Close Cafe button first
 
-Select the button and check your selection:
+Select the `close-cafe-btn` button by stroing it in a variable called `closeCafeButtonElement` and using `console.log` or `console.dir` to check your selection.
 
-```js
-const closeCafeButtonElement = document.querySelector('#close-cafe-btn');
-
-console.dir(closeCafeButtonElement);
-```
-
-Next, give it a click listener:
-
-```js
-closeCafeButtonElement.addEventListener('click', () => {
-  console.log('Close Cafe was clicked');
-});
-```
+Next, give it a click event listener that simply logs the message `'Close Cafe was clicked'`.
 
 Save, refresh, and click **Close Cafe**.
 
@@ -164,29 +151,21 @@ Repeat the same process for **Open Cafe**:
 
 **Checkpoint:** Both buttons should now log their own messages.
 
-### Part 6b: Give the page an opening message
+### 6b: Give the page an opening message
 
 The buttons can detect clicks. Next, the page needs instructions for displaying the cafe’s opening status.
 
 Add the following code **above your opening-button event listeners**.
 
-#### Store the cafe’s status
+#### Store the cafe’s status (aka its `state`)
 
-A boolean can remember whether the cafe is open:
-
-```js
-let isCafeOpen = true;
-```
-
-#### Select the message paragraph
-
-```js
-const cafeStatusElement = document.querySelector('#cafe-status');
-```
+1. Create a variable called `isCafeOpen` - this should be a boolean and this variable will remember whether the cafe is open or closed for us.
+2. Select the element with the ID `cafe-status`.
+3. Store the result in a variable named `cafeStatusElement`.
 
 We now have two different things:
 
-- `isCafeOpen` stores the **data**.
+- `isCafeOpen` stores the **data** aka **state**.
 - `cafeStatusElement` references the element that will **display** it.
 
 #### Write the display instructions
@@ -198,17 +177,7 @@ Our function needs to follow this decision:
 | `isCafeOpen` is `true` | We are open. Welcome! |
 | `isCafeOpen` is `false` | We are closed. See you tomorrow! |
 
-Add this function:
-
-```js
-function renderCafe() {
-  if (isCafeOpen === true) {
-    cafeStatusElement.textContent = 'We are open. Welcome!';
-  } else {
-    cafeStatusElement.textContent = 'We are closed. See you tomorrow!';
-  }
-}
-```
+Write a function called `renderCafe()` which logs the message `We are open. Welcome!` or `We are closed. See you tomorrow!` based on whether the value of `isCafeOpen` is `true` or `false`. 
 
 > 💡 **Render** means to display the current data. `renderCafe()` is an ordinary function that we named.
 
@@ -218,11 +187,16 @@ Defining the function stores its instructions. Call it underneath the function d
 renderCafe();
 ```
 
-**Checkpoint:** Refresh the page. The paragraph should show the open message.
+**Checkpoint:** Refresh the page. The console in the devTools should show the open message.
 
 Temporarily change the starting value of `isCafeOpen` to `false`, then refresh again. Confirm that the closed message appears. Set it back to `true` before continuing.
 
-### Part 6c: Connect the clicks to the display
+Any function with the word `render` in the name is meant to change what we see on the page.  Modify your `renderCafe()` function so that instead of simply console.logging a message, it actually changes what the `cafeStatusElement` shows on the screen.
+
+> 💡 remember the `textContent` attribute can change what text we see on the screen.
+
+
+### 6c: Connect the clicks to the display
 
 Now bring the two pieces together.
 
