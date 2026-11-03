@@ -24,7 +24,13 @@ The main title is too long, and the daily quote is missing.
 
 **Check your work:** Refresh the page. The shorter title should appear.
 
-## Part 2: Style individual and grouped elements
+```bash
+git add .
+git commit -m "Completes part 1"
+git push
+```
+
+<!-- ## Part 2: Style individual and grouped elements
 
 ### Update the highlighted headings
 
@@ -433,4 +439,4 @@ git commit -m "Complete Cozy Cafe lab"
 git push
 ```
 
-Submit your GitHub repository link using your class’s usual submission process.
+Submit your GitHub repository link using your class’s usual submission process. -->
