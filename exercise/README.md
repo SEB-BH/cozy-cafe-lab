@@ -5,6 +5,8 @@
 
 **Learning objective:** By the end of this lab, you will be able to use DOM methods, events, and functions to display and update information on a webpage.
 
+[DOM Manipulation Cheat Sheet](../cheatsheet/README.md)
+
 ## Introduction
 
 The Cozy Cafe needs some updates to its website. You will improve its content, add button interactions, and display information stored in JavaScript variables.
