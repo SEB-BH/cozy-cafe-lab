@@ -105,6 +105,26 @@ Choose a colour such as `bisque`, `lightsteelblue`, or `lavender`.
 
 **Check your work:** The original background should appear when the page loads. Clicking the button should change it.
 
+
+## Part 4b: Highlight the cafe photos
+
+Help visitors see which photo they are pointing at.
+
+1. Select all elements with the class `cafe-photo`.
+2. Use `forEach()` to add two event listeners to each photo:
+   - **`'mouseover'`:** Change its border colour to `#76523c`.
+   - **`'mouseout'`:** Change its border colour back to `#eadbc8`.
+
+> 💡 In JavaScript, hovering can be handled with `'mouseover'` and `'mouseout'` events. Use these event names in `addEventListener()` rather than `'click'`.
+
+You can change a border’s colour using:
+
+```js
+photoElement.style.borderColor = '#76523c';
+```
+
+**Check your work:** Move your pointer over each photo, then away. Only the photo you are hovering over should have a dark border.
+
 ## Part 5: Display whether the cafe is open
 
 So far, you have changed elements directly. Next, you will store information in a variable and use a function to display it.
