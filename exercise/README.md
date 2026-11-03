@@ -30,7 +30,7 @@ git commit -m "Completes part 1"
 git push
 ```
 
-<!-- ## Part 2: Style individual and grouped elements
+## Part 2: Style individual and grouped elements
 
 ### Update the highlighted headings
 
@@ -103,16 +103,16 @@ Make the **Change Background Colour** button work.
 2. Select the `<body>` element.
 3. Create a function named `handleBackgroundChange`.
 4. Inside the function, change the body’s background colour.
-5. Use `addEventListener()` to run the function when the button is clicked.
+<!-- 5. Use `addEventListener()` to run the function when the button is clicked. -->
 
 Choose a colour such as `bisque`, `lightsteelblue`, or `lavender`.
 
-> 💡 When registering a named event handler, pass the function’s name without `()`. The browser will call the function when the event happens.
+<!-- > 💡 When registering a named event handler, pass the function’s name without `()`. The browser will call the function when the event happens. -->
 
 **Check your work:** The original background should appear when the page loads. Clicking the button should change it.
 
 
-## Part 5: Highlight the cafe photos
+<!-- ## Part 5: Highlight the cafe photos
 
 Help visitors see which photo they are pointing at.
 
