@@ -9,36 +9,20 @@
 
 The Cozy Cafe needs some updates to its website. You will improve its content, add button interactions, and display information stored in JavaScript variables.
 
-Complete the parts in order. Some parts practise familiar skills. Others include guided examples to introduce a new pattern:
+Complete the parts in order.
 
-**Change the data → call a function → update the page.**
-
-## Before you begin
-
-Open the webpage and your browser’s console.
-
-- Write your JavaScript in **`app.js`**.
-- Add the requested CSS rule to **`style.css`**.
-- Make the page changes through JavaScript.
-- Save your files and refresh the browser regularly.
-- Check the console for errors after each part.
-
-> 🧠 When you select an element, store it in a variable with `Element` or `El` in its name. Use `console.dir()` to check that you selected the correct element.
+> 🧠 When you select an element, store it in a variable with `Element` or `El` in its name. Use `console.dir()` or `console.log()` to check that you selected the correct element.
 
 ## Part 1: Update the cafe’s content
 
 The main title is too long, and the daily quote is missing.
 
 1. Select the element with the ID `main-title`.
-2. Change its text to **Welcome to the Cozy Cafe**.
-3. Select the paragraph with the ID `quote-of-the-day`.
-4. Give it a quote of your choice.
+2. Store the result in a variable named `mainTitleEl`.
+3. Change its text to **Welcome to the Cozy Cafe**.
 
-You can use:
 
-> A little coffee, a little conversation.
-
-**Check your work:** Refresh the page. The shorter title and your quote should appear.
+**Check your work:** Refresh the page. The shorter title should appear.
 
 ## Part 2: Style individual and grouped elements
 
@@ -46,8 +30,8 @@ You can use:
 
 The page contains multiple headings with the class `highlight-title`.
 
-1. Select all elements with this class using `querySelectorAll()`.
-2. Store the result in a variable named `highlightTitleElements`.
+1. Select **all** elements with this class.
+2. Store the result in a variable named `highlightTitleEls`.
 3. Use `forEach()` to work with each element.
 4. Inside the loop:
    - Log the element’s `textContent`.
@@ -59,16 +43,26 @@ The page contains multiple headings with the class `highlight-title`.
 
 ### Feature the quote
 
-In **`style.css`**, create a class selector named `.featured`.
+1. Select the paragraph with the ID `quote-of-the-day`.
+2. Store the result in a variable.
+3. Give it a quote of your choice.
+
+You can use this example quote, or make your own:
+
+> A little coffee, a little conversation.
+
+**Check your work:** Refresh the page. Your quote should appear.
+
+In **`app.js`**, give the quote-of-the-day paragraph the class `featured`.
+
+In **`style.css`**, create a rule for a `featured` class.
 
 Give it:
-
 - A background colour of `#eadbc8`.
 - A border of `1px solid #76523c`.
 - Padding of `12px`.
 - Centred text.
 
-In **`app.js`**, use `classList.add()` to give the quote paragraph the class `featured`.
 
 **Check your work:** The quote should now appear inside a coloured box.
 

@@ -332,11 +332,6 @@ Cozy Cafe JavaScript is connected!
 Before beginning the exercise, confirm that:
 
 - The page has a cream background and white sections.
-- Three cafe photos are visible.
-- Hovering over a button changes its background colour.
-- The cafe opening message and specialty statuses display `Loading...`.
-- The Quote of the Day heading has an empty paragraph beneath it.
-- Two blog posts appear under Cafe Adventures.
 - The console shows your connection message without errors.
 
 The buttons will gain their click behaviour during the exercise.
