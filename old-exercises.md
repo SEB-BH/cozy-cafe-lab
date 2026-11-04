@@ -1,0 +1,444 @@
+<h1>
+  <span class="headline">Cozy Cafe Lab</span>
+  <span class="subhead">Exercise</span>
+</h1>
+
+**Learning objective:** By the end of this lab, you will be able to use DOM methods, events, and functions to display and update information on a webpage.
+
+[DOM Manipulation Cheat Sheet](../cheatsheet/README.md)
+
+## Introduction
+
+The Cozy Cafe needs some updates to its website. You will improve its content, add button interactions, and display information stored in JavaScript variables.
+
+Complete the parts in order.
+
+> 🧠 When you select an element, store it in a variable with `Element` or `El` in its name. Use `console.dir()` or `console.log()` to check that you selected the correct element.
+
+## Part 1: Update the cafe’s content
+
+The main title is too long, and the daily quote is missing.
+
+1. Select the element with the ID `main-title`.
+2. Store the result in a variable named `mainTitleEl`.
+3. Change its text to **Welcome to the Cozy Cafe**.
+
+
+**Check your work:** Refresh the page. The shorter title should appear.
+
+```bash
+git add .
+git commit -m "Completes part 1"
+git push
+```
+
+## Part 2: Style individual and grouped elements
+
+### Update the highlighted headings
+
+The page contains multiple headings with the class `highlight-title`.
+
+1. Select **all** elements with this class.
+2. Store the result in a variable named `highlightTitleEls`.
+3. Use `forEach()` to work with each element.
+4. Inside the loop:
+   - Log the element’s `textContent`.
+   - Change its font style to italic.
+
+> 💡 CSS uses `font-style`. JavaScript’s `style` object uses `fontStyle`.
+
+**Check your work:** Both **Quote of the Day** and **Cafe Adventures** should be italic. Their text should also appear in the console.
+
+### Feature the quote
+
+1. Select the paragraph with the ID `quote-of-the-day`.
+2. Store the result in a variable.
+3. Give it a quote of your choice.
+
+You can use this example quote, or make your own:
+
+> A little coffee, a little conversation.
+
+**Check your work:** Refresh the page. Your quote should appear.
+
+In **`app.js`**, give the quote-of-the-day paragraph the class `featured`.
+
+In **`style.css`**, create a rule for a `featured` class.
+
+Give it:
+- A background colour of `#eadbc8`.
+- A border of `1px solid #76523c`.
+- Padding of `12px`.
+- Centred text.
+
+
+**Check your work:** The quote should now appear inside a coloured box.
+
+> 🧠 Use `'.featured'` when writing a CSS selector. Use `'featured'` when passing the class name to `classList.add()`.
+
+## Part 3: Replace the main photo
+
+The cafe wants to feature its berry cake.
+
+1. Select the image with the ID `main-photo`.
+2. Use `getAttribute()` to read its current `src`.
+3. Log that value in the console.
+4. Use `setAttribute()` to change its `src` to:
+
+   ```text
+   ./assets/berry-cake.jpg
+   ```
+
+5. Update its `alt` attribute to:
+
+   ```text
+   A berry cake served at the cafe
+   ```
+
+**Check your work:** The first photo should now show the berry cake. Inspect the image in the browser’s Elements tab to confirm its updated attributes.
+
+## Part 4: Connect the background-colour button
+
+Make the **Change Background Colour** button work.
+
+1. Select the button with the ID `bg-color-btn`.
+2. Select the `<body>` element.
+3. Create a function named `handleBackgroundChange`.
+4. Inside the function, change the body’s background colour.
+5. Use `addEventListener()` to run the function when the button is clicked.
+
+Choose a colour such as `bisque`, `lightsteelblue`, or `lavender`.
+
+> 💡 When registering a named event handler, pass the function’s name without `()`. The browser will call the function when the event happens.
+
+**Check your work:** The original background should appear when the page loads. Clicking the button should change it.
+
+
+<!-- ## Part 5: Highlight the cafe photos
+
+Help visitors see which photo they are pointing at.
+
+1. Select all elements with the class `cafe-photo`.
+2. Use `forEach()` to add two event listeners to each photo:
+   - **`'mouseover'`:** Change its border colour to `#76523c`.
+   - **`'mouseout'`:** Change its border colour back to `#eadbc8`.
+
+> 💡 In JavaScript, hovering can be handled with `'mouseover'` and `'mouseout'` events. Use these event names in `addEventListener()` rather than `'click'`.
+
+You can change a border’s colour using:
+
+```js
+photoElement.style.borderColor = '#76523c';
+```
+
+**Check your work:** Move your pointer over each photo, then away. Only the photo you are hovering over should have a dark border. -->
+
+## Part 6: Display whether the cafe is open
+
+### 6a: Make the opening buttons respond
+
+Cafe staff need to open and close the cafe’s website status. Start by checking that both buttons can respond to clicks.
+
+#### Connect the Close Cafe button first
+
+Select the `close-cafe-btn` button by stroing it in a variable called `closeCafeButtonElement` and using `console.log` to check your selection.
+
+Next, give it a click event listener that simply logs the message `'Close Cafe was clicked'`.
+
+Save, refresh, and click **Close Cafe**.
+
+**Checkpoint:** Its message should appear in the console each time you click.
+
+#### Connect the Open Cafe button
+
+Repeat the same process for **Open Cafe**:
+
+- Its ID is `open-cafe-btn`.
+- Store it as `openCafeButtonElement`.
+- Make its listener log `'Open Cafe was clicked'`.
+
+**Checkpoint:** Both buttons should now log their own messages.
+
+### 6b: Give the page an opening message
+
+The buttons can detect clicks. Next, the page needs instructions for displaying the cafe’s opening status.
+
+Add the following code **above your opening-button event listeners**.
+
+#### Store the cafe’s status (aka its `state`)
+
+1. Create a variable called `isCafeOpen` - this should be a boolean and this variable will remember whether the cafe is open or closed for us.
+2. Select the element with the ID `cafe-status`.
+3. Store the result in a variable named `cafeStatusElement`.
+
+We now have two different things:
+
+- `isCafeOpen` stores the **data** aka **state**.
+- `cafeStatusElement` references the element that will **display** it.
+
+#### Write the display instructions
+
+Our function needs to follow this decision:
+
+| Cafe’s data | Message to display |
+|---|---|
+| `isCafeOpen` is `true` | We are open. Welcome! |
+| `isCafeOpen` is `false` | We are closed. See you tomorrow! |
+
+Write a function called `renderCafe()` which logs the message `We are open. Welcome!` or `We are closed. See you tomorrow!` based on whether the value of `isCafeOpen` is `true` or `false`. 
+
+> 💡 **Render** means to display the current data. `renderCafe()` is an ordinary function that we named.
+
+Defining the function stores its instructions. Call it underneath the function definition to run them:
+
+```js
+renderCafe();
+```
+
+**Checkpoint:** Refresh the page. The console in the devTools should show the open message.
+
+Temporarily change the starting value of `isCafeOpen` to `false`, then refresh again. Confirm that the closed message appears. Set it back to `true` before continuing.
+
+Any function with the word `render` in the name is meant to change what we see on the page.  Modify your `renderCafe()` function so that instead of simply console.logging a message, it actually changes what the `cafeStatusElement` shows on the screen.
+
+> 💡 remember the `textContent` attribute can change what text we see on the screen.
+
+
+### 6c: Connect the clicks to the display
+
+Now bring the two pieces together.
+
+Each button needs to:
+
+1. Change the cafe’s data (state).
+2. Call the function that displays that data (state).
+
+#### Make Close Cafe update the page
+
+Find the Close Cafe listener you wrote in Part 6a.
+
+Replace its `console.log()` line with:
+
+```js
+isCafeOpen = false;
+renderCafe();
+```
+
+The first line records that the cafe is closed. The second line updates the message.
+
+**Checkpoint:** Refresh the page, then click **Close Cafe**. The message should change immediately.
+
+#### Make Open Cafe update the page
+
+Do the same to the Open Cafe listener, except `isCafeOpen` should be set to `true` when we click the Open Cafe button.
+
+**Checkpoint:** Close the cafe, then reopen it. Repeat a few times.
+
+Both listeners now use the same display function:
+
+**Click → change `isCafeOpen` → call `renderCafe()` → see the updated message.**
+
+## Part 7: Display specialty availability
+
+The cafe also needs to show which specialties are available.
+
+You will store three statuses in an array and display them in the three existing `<span>` elements.
+
+### Add the data and select the elements
+
+Add the following **above your `renderCafe()` function definition**:
+
+```js
+const specialtyStatuses = ['Available', 'Sold out', 'Available'];
+
+const specialtyStatusElements =
+  document.querySelectorAll('.specialty-status');
+
+console.log(specialtyStatuses);
+console.log(specialtyStatusElements);
+```
+
+Keep these declarations above the initial call to `renderCafe()` as well.
+
+The array and the selected elements use the same order:
+
+| Index | Specialty | Starting status |
+|---|---|---|
+| `0` | Rose Latte | Available |
+| `1` | Pistachio Croissant | Sold out |
+| `2` | Lotus Cheesecake | Available |
+
+> 🧠 There should be three statuses and three selected spans. Both collections start at index `0`.
+
+### Display the first status
+
+Inside `renderCafe()`, add this line **after the existing `if/else` statement**:
+
+```js
+specialtyStatusElements[0].textContent = specialtyStatuses[0];
+```
+
+Keep the opening-status code inside the function too.
+
+This new line takes the string at index `0` in the array and displays it in the span at index `0`.
+
+Refresh the page.
+
+**Check your work:** Rose Latte should show **Available**. The other specialties should still show **Loading...**.
+
+### Display the remaining statuses
+
+Inside the same function, add two more assignments:
+
+- Use index `1` to display the croissant’s status.
+- Use index `2` to display the cheesecake’s status.
+
+**Check your work:** All three specialties should display their starting statuses.
+
+### Replace the repeated assignments with a loop
+
+The three assignments perform the same operation at different indexes. A loop can repeat that operation.
+
+Inside `renderCafe()`, replace those three assignments with:
+
+```js
+specialtyStatuses.forEach((status, index) => {
+  specialtyStatusElements[index].textContent = status;
+});
+```
+
+The callback receives:
+
+- `status`: the current string from the array.
+- `index`: its position in the array.
+
+The index identifies the span that should display that status.
+
+**Check your work:** Refresh the page. The displayed statuses should remain the same.
+
+### 🎓 You Do: Restock the croissants
+
+Make the **Restock Croissants** button work.
+
+1. Select the button with the ID `restock-croissants-btn`.
+2. Create a function named `handleRestockCroissants`.
+3. Inside the function:
+   - Change the array item at index `1` to `'Available'`.
+   - Call `renderCafe()`.
+4. Connect the function to the button’s click event.
+
+**Check your work:** Clicking the button should change the croissant’s status from **Sold out** to **Available**. The other two statuses should remain correct.
+
+> 🧠 Keep event listeners outside `renderCafe()`. Register each listener once.
+
+### Observe the difference between data and display
+
+Try this short experiment:
+
+1. Temporarily comment out the `renderCafe()` call **inside `handleRestockCroissants`**.
+2. Add `console.log(specialtyStatuses)` inside that handler, after the array update.
+3. Save and refresh the page.
+4. Click **Restock Croissants**.
+5. Compare the array in the console with the status on the page.
+
+The array should contain the updated value, while the page still displays **Sold out**.
+
+Restore the `renderCafe()` call and click the button again.
+
+The page should now display the updated status.
+
+> 💡 Changing JavaScript data does not automatically update the page. Our function performs that update.
+
+Refreshing the page runs the starting code again, so the croissant will return to **Sold out**.
+
+<!-- ## Part 8: Add a past menu item
+
+The cafe previously served Rose Cake. Add it to the **Past Menu Items** list using JavaScript.
+
+1. Select the list with the ID `past-menu-items`.
+2. Create a new `<li>` element.
+3. Give it the text **Rose Cake**.
+4. Append it to the list.
+
+**Check your work:** There should be five past menu items, with Rose Cake at the end.
+
+> 🧠 Keep this element-creation code outside `renderCafe()`. It should run once when the page loads. Putting it inside the function would create another item whenever the function runs.
+
+## Part 9: Publish a cafe update
+
+Create a third blog post using JavaScript.
+
+Use this content:
+
+- **Title:** Karak Tea Tasting
+- **Description:** Guests joined us to try our new karak blends and share their favourites.
+
+Your new post should have this structure:
+
+```html
+<div class="blog-post">
+  <h3>Karak Tea Tasting</h3>
+  <p>
+    Guests joined us to try our new karak blends
+    and share their favourites.
+  </p>
+</div>
+```
+
+Build this structure using `createElement()`, `textContent`, `classList.add()`, and `appendChild()`.
+
+1. Select the section with the ID `blogs`.
+2. Create the `<div>`, `<h3>`, and `<p>` elements.
+3. Give the `<div>` the class `blog-post`.
+4. Set the heading and paragraph text.
+5. Append the heading and paragraph to the new `<div>`.
+6. Append the completed `<div>` to the blogs section.
+
+Keep this code outside `renderCafe()`.
+
+**Check your work:**
+
+- Three blog posts should appear.
+- The new post should appear last.
+- It should use the same styling as the other posts.
+- Clicking the cafe buttons should not create additional posts.
+
+## 🚀 Level Up: Style sold-out items
+
+The stylesheet already contains a `.sold-out` class.
+
+Extend the loop inside `renderCafe()` so that:
+
+- A status of `'Sold out'` gives the corresponding span the class `sold-out`.
+- Any other status removes that class from the span.
+
+Use an `if/else` statement with `classList.add()` and `classList.remove()`.
+
+**Check your work:** The croissant’s starting status should appear red. After restocking, it should display **Available** without the sold-out styling.
+
+## 🚀 Level Up: Update the opening buttons
+
+Help cafe staff see which opening action is available.
+
+Extend `renderCafe()` so that:
+
+- When the cafe is open, **Open Cafe** is disabled and **Close Cafe** is enabled.
+- When the cafe is closed, **Close Cafe** is disabled and **Open Cafe** is enabled.
+
+Use `setAttribute()` and `removeAttribute()`.
+
+> 💡 `disabled` is a boolean attribute. Its presence disables the button. Removing the attribute enables it.
+
+**Check your work:** Switching between open and closed should also update which button can be clicked.
+
+## Submit your work
+
+Save your files, then run:
+
+```bash
+git add .
+git commit -m "Complete Cozy Cafe lab"
+git push
+```
+
+Submit your GitHub repository link using your class’s usual submission process. -->

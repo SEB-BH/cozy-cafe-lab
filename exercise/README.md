@@ -113,6 +113,51 @@ Choose a colour such as `bisque`, `lightsteelblue`, or `lavender`.
 
 **Check your work:** The original background should appear when the page loads. Clicking the button should change it.
 
+## Part 5: Rendering Cafe Specialties
+
+First, replace the existing specialties `<ul>` with this version. Keep the existing **Restock Croissants** button underneath it.
+
+```html
+        <ul id="cafe-specialties">
+          <li>
+            Rose Latte:
+            <span id="rose-latte" class="specialty-status">Loading...</span>
+            <button class="sold-out-btn" id="0">Mark Sold Out</button>
+          </li>
+
+          <li>
+            Pistachio Croissant:
+            <span id="croissant" class="specialty-status">Loading...</span>
+            <button class="sold-out-btn" id="1">Mark Sold Out</button>
+          </li>
+
+          <li>
+            Lotus Cheesecake:
+            <span id="cheesecake" class="specialty-status">Loading...</span>
+            <button class="sold-out-btn" id="2">Mark Sold Out</button>
+          </li>
+        </ul>
+```
+
+Each button’s `id` matches its specialty’s position in the array:
+
+| Specialty | Status | Array index | Button ID |
+|---|---|---|---|
+| Rose Latte | 'Available' | `0` | `"0"` |
+| Pistachio Croissant | 'Sold Out' | `1` | `"1"` |
+| Lotus Cheesecake | 'Available' | `2` | `"2"` |
+
+
+### Tasks:
+- Use javaScript to replace "Loading..." with the starting statuses using the table above (Rose Latte: Available, etc.)
+- Each 'Mark Sold Out' button should change the availabilty of the item next to it to 'Sold Out'
+
+### LEVEL UP:
+- Use arrays to cache your elements
+- Use an array to store each items availability
+- Use a render function to display availability
+- Reduce repetition in the event listeners
+- Share one sold-out handler (should edit the array, not textContent directly)
 
 <!-- ## Part 5: Highlight the cafe photos
 
@@ -131,91 +176,78 @@ You can change a border’s colour using:
 photoElement.style.borderColor = '#76523c';
 ```
 
-**Check your work:** Move your pointer over each photo, then away. Only the photo you are hovering over should have a dark border.
+**Check your work:** Move your pointer over each photo, then away. Only the photo you are hovering over should have a dark border. -->
+<!-- 
+## Part 6: Show whether the cafe is open
 
-## Part 6: Display whether the cafe is open
+**Goal:** Make the **Close Cafe** and **Open Cafe** buttons update the message under **Cafe Opening Status**.
 
-### 6a: Make the opening buttons respond
+### 6a: Make Close Cafe respond to a click
 
-Cafe staff need to open and close the cafe’s website status. Start by checking that both buttons can respond to clicks.
+First, check that JavaScript can detect a click on the button.
 
-#### Connect the Close Cafe button first
+1. Select the button with the ID `close-cafe-btn`.
+2. Store it in a variable called `closeCafeButtonElement`.
+3. Log that variable to check your selection.
+4. Add a `'click'` event listener to the button.
+5. Inside the listener’s function, log `'Close Cafe was clicked'`.
 
-Select the `close-cafe-btn` button by stroing it in a variable called `closeCafeButtonElement` and using `console.log` or `console.dir` to check your selection.
+**Check:** Save and refresh. Click **Close Cafe** a few times. The message should appear in the console each time.
 
-Next, give it a click event listener that simply logs the message `'Close Cafe was clicked'`.
+### 6b: Write a function that displays the opening status
 
-Save, refresh, and click **Close Cafe**.
+Before the button can close the cafe, we need somewhere to remember whether it is open.
 
-**Checkpoint:** Its message should appear in the console each time you click.
+#### Store the data
 
-#### Connect the Open Cafe button
+Above your Close Cafe event listener:
 
-Repeat the same process for **Open Cafe**:
+1. Create a variable called `isCafeOpen` using `let`.
+2. Set its starting value to `true`.
 
-- Its ID is `open-cafe-btn`.
-- Store it as `openCafeButtonElement`.
-- Make its listener log `'Open Cafe was clicked'`.
+This variable remembers the cafe’s current status:
 
-**Checkpoint:** Both buttons should now log their own messages.
+- `true`: the cafe is open.
+- `false`: the cafe is closed.
 
-### 6b: Give the page an opening message
+> 💡 Data that remembers the application’s current situation is called **state**.
 
-The buttons can detect clicks. Next, the page needs instructions for displaying the cafe’s opening status.
+#### Select the paragraph
 
-Add the following code **above your opening-button event listeners**.
+Find this element in your HTML:
 
-#### Store the cafe’s status (aka its `state`)
+```html
+<p id="cafe-status">Loading cafe information...</p>
+```
 
-1. Create a variable called `isCafeOpen` - this should be a boolean and this variable will remember whether the cafe is open or closed for us.
-2. Select the element with the ID `cafe-status`.
-3. Store the result in a variable named `cafeStatusElement`.
+In your JavaScript, select it and store it in a variable called `cafeStatusElement`.
 
-We now have two different things:
+Place this variable above the event listener too.
 
-- `isCafeOpen` stores the **data** aka **state**.
-- `cafeStatusElement` references the element that will **display** it.
+#### Write the function
 
-#### Write the display instructions
+Below those variables, but **above the event listener**, create a function called `renderCafe`.
 
-Our function needs to follow this decision:
+Inside the function, use an `if/else` statement to update the paragraph:
 
-| Cafe’s data | Message to display |
+| If… | Set `cafeStatusElement.textContent` to… |
 |---|---|
-| `isCafeOpen` is `true` | We are open. Welcome! |
-| `isCafeOpen` is `false` | We are closed. See you tomorrow! |
+| `isCafeOpen` is `true` | `'We are open. Welcome!'` |
+| Otherwise | `'We are closed. See you tomorrow!'` |
 
-Write a function called `renderCafe()` which logs the message `We are open. Welcome!` or `We are closed. See you tomorrow!` based on whether the value of `isCafeOpen` is `true` or `false`. 
+> 💡 We named the function `renderCafe` because it displays the cafe’s current data. **Render** means to display.
 
-> 💡 **Render** means to display the current data. `renderCafe()` is an ordinary function that we named.
-
-Defining the function stores its instructions. Call it underneath the function definition to run them:
+Immediately below the function definition, call it:
 
 ```js
 renderCafe();
 ```
 
-**Checkpoint:** Refresh the page. The console in the devTools should show the open message.
+**Check:** Save and refresh. **Loading cafe information...** should be replaced with **We are open. Welcome!**
 
-Temporarily change the starting value of `isCafeOpen` to `false`, then refresh again. Confirm that the closed message appears. Set it back to `true` before continuing.
+### 6c: Make Close Cafe update the page
 
-Any function with the word `render` in the name is meant to change what we see on the page.  Modify your `renderCafe()` function so that instead of simply console.logging a message, it actually changes what the `cafeStatusElement` shows on the screen.
-
-> 💡 remember the `textContent` attribute can change what text we see on the screen.
-
-
-### 6c: Connect the clicks to the display
-
-Now bring the two pieces together.
-
-Each button needs to:
-
-1. Change the cafe’s data (state).
-2. Call the function that displays that data (state).
-
-#### Make Close Cafe update the page
-
-Find the Close Cafe listener you wrote in Part 6a.
+Find the Close Cafe event listener you wrote in Part 6a.
 
 Replace its `console.log()` line with:
 
@@ -224,82 +256,152 @@ isCafeOpen = false;
 renderCafe();
 ```
 
-The first line records that the cafe is closed. The second line updates the message.
+Read these two lines in order:
 
-**Checkpoint:** Refresh the page, then click **Close Cafe**. The message should change immediately.
+1. Remember that the cafe is closed.
+2. Update the page to match.
 
-#### Make Open Cafe update the page
+**Check:** Save, refresh, and click **Close Cafe**. The paragraph should change to **We are closed. See you tomorrow!**
 
-Do the same to the Open Cafe listener, except `isCafeOpen` should be set to `true` when we click the Open Cafe button.
+Clicking the button again should leave the closed message displayed.
 
-**Checkpoint:** Close the cafe, then reopen it. Repeat a few times.
+### 6d: Make Open Cafe work
 
-Both listeners now use the same display function:
+Use the Close Cafe code as your example.
 
-**Click → change `isCafeOpen` → call `renderCafe()` → see the updated message.**
+1. Select the button with the ID `open-cafe-btn`.
+2. Store it in a variable called `openCafeButtonElement`.
+3. Add a `'click'` event listener.
+4. Inside the listener’s function:
+   - Set `isCafeOpen` to `true`.
+   - Call `renderCafe()`.
 
-## Part 7: Display specialty availability
+Keep this event listener outside `renderCafe()`, alongside your Close Cafe listener.
 
-The cafe also needs to show which specialties are available.
+**Check:** Save and refresh. Close the cafe, then reopen it. Both buttons should update the same paragraph.
 
-You will store three statuses in an array and display them in the three existing `<span>` elements.
+**Explain:** Why does each listener need to change `isCafeOpen` **and** call `renderCafe()`?
 
-### Add the data and select the elements
+## Part 7: Show which specialties are available
 
-Add the following **above your `renderCafe()` function definition**:
+**Goal:** Display the availability of all three specialties, then make **Restock Croissants** update the croissant’s status.
+
+We will use the same pattern:
+
+**Change the data → call `renderCafe()` → see the updated page.**
+
+### 7a: Display three statuses from an array
+
+#### Add the data and select the spans
+
+Add this code **above your `renderCafe()` function definition**:
 
 ```js
 const specialtyStatuses = ['Available', 'Sold out', 'Available'];
 
 const specialtyStatusElements =
   document.querySelectorAll('.specialty-status');
-
-console.log(specialtyStatuses);
-console.log(specialtyStatusElements);
 ```
 
-Keep these declarations above the initial call to `renderCafe()` as well.
+The array contains the statuses. The selected spans are where we will display them.
 
-The array and the selected elements use the same order:
+Their indexes match:
 
 | Index | Specialty | Starting status |
 |---|---|---|
-| `0` | Rose Latte | Available |
-| `1` | Pistachio Croissant | Sold out |
-| `2` | Lotus Cheesecake | Available |
+| `0` | Rose Latte | `'Available'` |
+| `1` | Pistachio Croissant | `'Sold out'` |
+| `2` | Lotus Cheesecake | `'Available'` |
 
-> 🧠 There should be three statuses and three selected spans. Both collections start at index `0`.
+Log both variables to the console.
 
-### Display the first status
+**Check:** Save and refresh. You should have three strings in the array and three selected spans.
 
-Inside `renderCafe()`, add this line **after the existing `if/else` statement**:
+#### Display the first status
+
+Inside `renderCafe()`, add this line **after the complete `if/else` statement**:
 
 ```js
 specialtyStatusElements[0].textContent = specialtyStatuses[0];
 ```
 
-Keep the opening-status code inside the function too.
+This displays the first array item in the first span.
 
-This new line takes the string at index `0` in the array and displays it in the span at index `0`.
+**Check:** Save and refresh. Rose Latte should show **Available**. The other two specialties should still show **Loading...**.
 
-Refresh the page.
+#### Display the other two statuses
 
-**Check your work:** Rose Latte should show **Available**. The other specialties should still show **Loading...**.
+Under that new line, add two more assignments:
 
-### 🎓 You Do: Display the remaining statuses
+1. Display `specialtyStatuses[1]` in `specialtyStatusElements[1]`.
+2. Display `specialtyStatuses[2]` in `specialtyStatusElements[2]`.
 
-Inside the same function, add two more assignments:
+Use `.textContent` in both assignments.
 
-- Use index `1` to display the croissant’s status.
-- Use index `2` to display the cheesecake’s status.
+**Check:** Save and refresh. You should see:
 
-**Check your work:** All three specialties should display their starting statuses.
+- Rose Latte: **Available**
+- Pistachio Croissant: **Sold out**
+- Lotus Cheesecake: **Available**
 
-### Replace the repeated assignments with a loop
+Your `renderCafe()` function should now update the opening message **and** all three specialty statuses.
 
-The three assignments perform the same operation at different indexes. A loop can repeat that operation.
+### 7b: Restock the croissants
 
-Inside `renderCafe()`, replace those three assignments with:
+Make **Restock Croissants** change the croissant’s status to **Available**.
+
+Use your opening-button listeners as examples.
+
+1. Select the button with the ID `restock-croissants-btn`.
+2. Store it in a variable called `restockCroissantsButtonElement`.
+3. Add a `'click'` event listener.
+4. Inside the listener’s function:
+   - Change the item at index `1` in `specialtyStatuses` to `'Available'`.
+   - Call `renderCafe()`.
+
+Write this listener outside `renderCafe()`, alongside your other listeners.
+
+> 💡 Update the array item first. Then call the function that displays the array.
+
+**Check:** Save, refresh, and click **Restock Croissants**.
+
+The croissant should change from **Sold out** to **Available**. The other two statuses should stay the same.
+
+#### Predict, then test
+
+What would happen if the listener changed the array but did **not** call `renderCafe()`?
+
+Test your prediction:
+
+1. Temporarily comment out the `renderCafe()` call inside the restock listener.
+2. After the array update, add:
+
+   ```js
+   console.log(specialtyStatuses);
+   ```
+
+3. Save, refresh, and click **Restock Croissants**.
+4. Compare the croissant’s status in the array with its status on the page.
+
+**Explain:** Why does the array show `'Available'` while the page still shows **Sold out**?
+
+Restore the `renderCafe()` call. Save, refresh, and check that restocking works again.
+
+### 7c: Replace the repeated assignments with a loop
+
+Your restock button now works. Next, we will simplify the code that displays the statuses.
+
+Find these three assignments inside `renderCafe()`:
+
+```js
+specialtyStatusElements[0].textContent = specialtyStatuses[0];
+specialtyStatusElements[1].textContent = specialtyStatuses[1];
+specialtyStatusElements[2].textContent = specialtyStatuses[2];
+```
+
+Notice that each line does the same job using a different index.
+
+Replace those three lines with:
 
 ```js
 specialtyStatuses.forEach((status, index) => {
@@ -307,51 +409,24 @@ specialtyStatuses.forEach((status, index) => {
 });
 ```
 
-The callback receives:
+Each time the callback runs:
 
-- `status`: the current string from the array.
-- `index`: its position in the array.
+- `status` holds the current array item.
+- `index` holds its position.
+- `specialtyStatusElements[index]` selects the matching span.
 
-The index identifies the span that should display that status.
+**Check:** Save and refresh.
 
-**Check your work:** Refresh the page. The displayed statuses should remain the same.
+1. Confirm that all three starting statuses appear correctly.
+2. Click **Restock Croissants**.
+3. Confirm that the croissant changes to **Available**.
+4. Check that **Close Cafe** and **Open Cafe** still work.
 
-### 🎓 You Do: Restock the croissants
+The page should behave exactly as it did before replacing the assignments.
 
-Make the **Restock Croissants** button work.
+> 💡 Refreshing runs the starting code again. The cafe starts open, and the croissant starts sold out. -->
 
-1. Select the button with the ID `restock-croissants-btn`.
-2. Create a function named `handleRestockCroissants`.
-3. Inside the function:
-   - Change the array item at index `1` to `'Available'`.
-   - Call `renderCafe()`.
-4. Connect the function to the button’s click event.
-
-**Check your work:** Clicking the button should change the croissant’s status from **Sold out** to **Available**. The other two statuses should remain correct.
-
-> 🧠 Keep event listeners outside `renderCafe()`. Register each listener once.
-
-### Observe the difference between data and display
-
-Try this short experiment:
-
-1. Temporarily comment out the `renderCafe()` call **inside `handleRestockCroissants`**.
-2. Add `console.log(specialtyStatuses)` inside that handler, after the array update.
-3. Save and refresh the page.
-4. Click **Restock Croissants**.
-5. Compare the array in the console with the status on the page.
-
-The array should contain the updated value, while the page still displays **Sold out**.
-
-Restore the `renderCafe()` call and click the button again.
-
-The page should now display the updated status.
-
-> 💡 Changing JavaScript data does not automatically update the page. Our function performs that update.
-
-Refreshing the page runs the starting code again, so the croissant will return to **Sold out**.
-
-## Part 8: Add a past menu item
+<!-- ## Part 8: Add a past menu item
 
 The cafe previously served Rose Cake. Add it to the **Past Menu Items** list using JavaScript.
 

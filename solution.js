@@ -36,3 +36,51 @@ bgColorBtnEl.addEventListener('click', handleBackgroundChange)
 
 
 // PART 5
+const roseLatteEl = document.querySelector('#rose-latte')
+const croissantEl = document.querySelector('#croissant')
+const cheescakeEl = document.querySelector('#cheesecake')
+// console.log(roseLatteEl, croissantEl, cheescakeEl)
+
+roseLatteEl.textContent = 'Available'
+croissantEl.textContent = 'Sold Out'
+cheescakeEl.textContent = 'Available'
+
+// CSS identifiers cannot begin with an unescaped number.
+// const button = document.querySelector('[id="0"]')
+const roseBtnEl = document.getElementById('0')
+const croissantBtnEl = document.getElementById('1')
+const cheescakeBtnEl = document.getElementById('2')
+// console.log(roseBtnEl, croissantBtnEl, cheescakeBtnEl)
+
+roseBtnEl.addEventListener('click', () => {
+    roseLatteEl.textContent = 'Sold Out'
+})
+croissantBtnEl.addEventListener('click', () => {
+    croissantEl.textContent = 'Sold Out'
+})
+cheescakeBtnEl.addEventListener('click', () => {
+    cheescakeEl.textContent = 'Sold Out'
+})
+
+
+// // PART 5 LEVEL UP 
+// const specialtyElements = document.querySelectorAll('.specialty-status')
+// const soldOutBtnElements = document.querySelectorAll('.sold-out-btn')
+// // console.log(soldOutBtnElements)
+
+// const statuses = ['Available', 'Sold Out', 'Available']
+
+// const render = () => {
+//     //for each status, update its related html element's textContent
+//     statuses.forEach((status, index) => {
+//         specialtyElements[index].textContent = status
+//     })
+// }
+// render()
+
+// soldOutBtnElements.forEach((button, index) => {
+//     button.addEventListener('click', () => {
+//         statuses[index] = 'Sold Out'
+//         render()
+//     })
+// })
